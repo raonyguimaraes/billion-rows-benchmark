@@ -1,0 +1,60 @@
+bench=# \dt
+           List of relations
+ Schema |    Name    | Type  |  Owner   
+--------+------------+-------+----------
+ public | individual | table | postgres
+ public | variant    | table | postgres
+(2 rows)
+
+bench=# \d individual
+                    Table "public.individual"
+ Column |          Type          | Collation | Nullable | Default 
+--------+------------------------+-----------+----------+---------
+ id     | integer                |           | not null | 
+ name   | character varying(600) |           | not null | 
+Indexes:
+    "individual_pkey" PRIMARY KEY, btree (id)
+Referenced by:
+    TABLE "variant" CONSTRAINT "variant_individual_fkey" FOREIGN KEY (individual) REFERENCES individual(id)
+
+bench=# \d variant
+                       Table "public.variant"
+   Column   |         Type          | Collation | Nullable | Default 
+------------+-----------------------+-----------+----------+---------
+ chr        | character varying(2)  |           |          | 
+ pos        | integer               |           |          | 
+ id         | character varying(50) |           |          | 
+ ref        | character varying(80) |           |          | 
+ alt        | text                  |           |          | 
+ qual       | real                  |           |          | 
+ filter     | text                  |           |          | 
+ info       | text                  |           |          | 
+ depth      | integer               |           |          | 
+ format     | text                  |           |          | 
+ genotype   | text                  |           |          | 
+ individual | integer               |           | not null | 
+Indexes:
+    "variant_pkey" PRIMARY KEY, btree (individual)
+    "variants_variant_individual_id_1073f3b5" btree (individual)
+Foreign-key constraints:
+    "variant_individual_fkey" FOREIGN KEY (individual) REFERENCES individual(id)
+
+
+1103800 ALL.chr22.phase3_shapeit2_mvncall_integrated_v5a.20130502.genotypes.vcf
+
+1.103.800 lines
+
+2763915200 rows (genotypes) to insert to DB
+
+Query Variants from individual X
+
+Add to PostgreSQL
+Add to Mysql
+Add to SQLITE
+Add to MongoDB
+Add to ElasticSearch
+
+Benchmark Insertion
+Benchmark Selection
+
+Celebrate!
